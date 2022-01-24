@@ -32,16 +32,7 @@ RUN case "${TARGETPLATFORM}" in \
 
 COPY postgres/pg_hba.conf /pg_hba.conf
 COPY postgres/pginit.sql /pginit.sql
-
-RUN mkdir $PGDATA && \
-    chown -R postgres:postgres $PGDATA && \
-    su postgres -c '/usr/lib/postgresql/13/bin/pg_ctl -D $PGDATA init' && \
-    mv /pg_hba.conf $PGDATA/ && \
-    chown postgres.postgres $PGDATA/pg_hba.conf && \
-    su postgres -c '/usr/lib/postgresql/13/bin/pg_ctl -D $PGDATA start' && \    
-    su postgres -c '/usr/lib/postgresql/13/bin/psql -d template1 -f /pginit.sql' && \
-    su postgres -c '/usr/lib/postgresql/13/bin/pg_ctl -D $PGDATA stop'  
-
+COPY postgres/startdb.sh /startdb.sh
 
 ENV MAVEN_HOME="/opt/maven/apache-maven-3.8.4"
 ENV JAVA_HOME="/usr/lib/jvm/zulu-11"
