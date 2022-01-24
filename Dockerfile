@@ -1,4 +1,4 @@
-FROM node:17.4-bullseye-slim
+FROM node:15.8-stretch-slim
 ARG TARGETPLATFORM
 ENV DOWNLOAD_URL=invalid
 ENV ZULU_DEB=invalid
