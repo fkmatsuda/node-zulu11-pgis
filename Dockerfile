@@ -2,11 +2,14 @@ FROM node:17.4-bullseye-slim
 ARG TARGETPLATFORM
 ENV DOWNLOAD_URL=invalid
 ENV ZULU_DEB=invalid
+ENV JAVA_PATH=invalid
 ENV PGDATA=/database
 RUN case "${TARGETPLATFORM}" in \
          "linux/amd64")     DOWNLOAD_URL=https://cdn.azul.com/zulu/bin/zulu11.54.23-ca-jdk11.0.14-linux_amd64.deb               \
+                            JAVA_PATH=/usr/lib/jvm/zulu-11-amd64 \
                             ZULU_DEB="zulu11.54.23-ca-jdk11.0.14-linux_amd64.deb"        ;; \
          "linux/arm64")     DOWNLOAD_URL=https://cdn.azul.com/zulu-embedded/bin/zulu11.54.23-ca-jdk11.0.14-linux_arm64.deb           \
+                            JAVA_PATH=/usr/lib/jvm/zulu-11-arm64 \
                             ZULU_DEB="zulu11.54.23-ca-jdk11.0.14-linux_arm64.deb"    ;; \
     esac && \
     apt-get update -qq && \
@@ -24,7 +27,8 @@ RUN case "${TARGETPLATFORM}" in \
     apt-get -y install postgresql-13 postgresql-13-postgis-3 postgresql-13-postgis-3-scripts && \
     apt-get autoclean && \
     rm ./apache-maven-3.8.4-bin.tar.gz && \
-    rm $ZULU_DEB
+    rm $ZULU_DEB && \
+    ln -s $JAVA_PATH /usr/lib/jvm/zulu-11
 
 COPY postgres/pg_hba.conf /pg_hba.conf
 COPY postgres/pginit.sql /pginit.sql
