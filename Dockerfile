@@ -3,9 +3,9 @@ ENV DOWNLOAD_URL=invalid
 ENV ZULU_DEB=invalid
 ENV JAVA_PATH=invalid
 ENV PGDATA=/database
-RUN DOWNLOAD_URL=https://cdn.azul.com/zulu/bin/zulu11.54.23-ca-jdk11.0.14-linux_amd64.deb               \
+RUN DOWNLOAD_URL=https://cdn.azul.com/zulu/bin/zulu11.54.23-ca-jdk11.0.14-linux_amd64.deb \
     JAVA_PATH=/usr/lib/jvm/zulu-11-amd64 \
-    ZULU_DEB="zulu11.54.23-ca-jdk11.0.14-linux_amd64.deb"        ;; \
+    ZULU_DEB="zulu11.54.23-ca-jdk11.0.14-linux_amd64.deb" \
     apt-get update -qq && \
     apt-get install -qq git wget && \
     eval $(ssh-agent -s) && \
