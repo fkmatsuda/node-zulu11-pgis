@@ -5,8 +5,8 @@ ENV JAVA_PATH=/usr/lib/jvm/zulu-11-amd64
 ENV PGDATA=/database
 ENV DB_HOST=localhost
 ENV DB_PORT=5432
-ENV DB_USER=postgres
-ENV DB_PASSWORD=postgres
+ENV DB_USER=qgis
+ENV DB_PASSWORD=qgis
 RUN apt-get update -qq && \
     apt-get install -qq git wget && \
     eval $(ssh-agent -s) && \
