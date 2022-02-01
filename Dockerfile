@@ -3,6 +3,10 @@ ENV DOWNLOAD_URL=https://cdn.azul.com/zulu/bin/zulu11.54.23-ca-jdk11.0.14-linux_
 ENV ZULU_DEB=zulu11.54.23-ca-jdk11.0.14-linux_amd64.deb
 ENV JAVA_PATH=/usr/lib/jvm/zulu-11-amd64
 ENV PGDATA=/database
+ENV DB_HOST=localhost
+ENV DB_PORT=5432
+ENV DB_USER=postgres
+ENV DB_PASSWORD=postgres
 RUN apt-get update -qq && \
     apt-get install -qq git wget && \
     eval $(ssh-agent -s) && \

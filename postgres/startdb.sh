@@ -5,4 +5,6 @@ su postgres -c '/usr/lib/postgresql/13/bin/pg_ctl -D $PGDATA init' && \
 mv /pg_hba.conf $PGDATA/ && \
 chown postgres.postgres $PGDATA/pg_hba.conf && \
 su postgres -c '/usr/lib/postgresql/13/bin/pg_ctl -D $PGDATA start' && \
+su postgres -c "/usr/lib/postgresql/13/bin/psql -c \"alter user postgres with password '$DB_PASSWORD'\"" && \
+su postgres -c "/usr/lib/postgresql/13/bin/psql -c \"create user $DB_USER with createdb password '$DB_PASSWORD'\"" && \
 su postgres -c '/usr/lib/postgresql/13/bin/psql -d template1 -f /pginit.sql'
