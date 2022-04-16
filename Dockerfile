@@ -10,6 +10,9 @@ ENV DB_HOST=localhost
 ENV DB_PORT=5432
 ENV DB_USER=qgis
 ENV DB_PASSWORD=qgis
+ENV ENDPOINT_URL=https://s3.amazonaws.com
+ENV ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
+ENV SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 RUN apt-get update -qq && \
     apt-get install -qq git wget && \
     eval $(ssh-agent -s) && \
