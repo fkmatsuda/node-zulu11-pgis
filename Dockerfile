@@ -1,9 +1,9 @@
 FROM node:lts-slim
 ENV DOWNLOAD_URL=https://cdn.azul.com/zulu/bin/zulu11.58.23-ca-jdk11.0.16.1-linux_amd64.deb
 ENV ZULU_DEB=zulu11.58.23-ca-jdk11.0.16.1-linux_amd64.deb
-ENV MVN_PREFIX=apache-maven-3.8.5
+ENV MVN_PREFIX=apache-maven-3.8.6
 ENV MVN_TAR=$MVN_PREFIX-bin.tar.gz
-ENV DOWNLOAD_MVN=https://dlcdn.apache.org/maven/maven-3/3.8.5/binaries/$MVN_TAR
+ENV DOWNLOAD_MVN=https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/$MVN_TAR
 ENV JAVA_PATH=/usr/lib/jvm/zulu-11-amd64
 ENV PGDATA=/database
 ENV DB_HOST=localhost
