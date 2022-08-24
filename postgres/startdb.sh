@@ -1,4 +1,5 @@
 #!/bin/bash
+alias s4cmd='/usr/bin/s4cmd --endpoint-url=\"\$ENDPOINT_URL\" --access-key=\"\$ACCESS_KEY_ID\" --secret-key=\"\$SECRET_ACCESS_KEY\"'
 mkdir $PGDATA && \
 chown -R postgres:postgres $PGDATA && \
 su postgres -c '/usr/lib/postgresql/13/bin/pg_ctl -D $PGDATA init' && \

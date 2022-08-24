@@ -1,6 +1,6 @@
-FROM node:15.8-stretch-slim
-ENV DOWNLOAD_URL=https://cdn.azul.com/zulu/bin/zulu11.54.25-ca-jdk11.0.14.1-linux_amd64.deb
-ENV ZULU_DEB=zulu11.54.25-ca-jdk11.0.14.1-linux_amd64.deb
+FROM node:lts-slim
+ENV DOWNLOAD_URL=https://cdn.azul.com/zulu/bin/zulu11.58.23-ca-jdk11.0.16.1-linux_amd64.deb
+ENV ZULU_DEB=zulu11.58.23-ca-jdk11.0.16.1-linux_amd64.deb
 ENV MVN_PREFIX=apache-maven-3.8.5
 ENV MVN_TAR=$MVN_PREFIX-bin.tar.gz
 ENV DOWNLOAD_MVN=https://dlcdn.apache.org/maven/maven-3/3.8.5/binaries/$MVN_TAR
@@ -29,8 +29,7 @@ RUN apt-get update -qq && \
     apt-get autoclean && \
     rm ./$MVN_TAR && \
     rm $ZULU_DEB && \
-    ln -s $JAVA_PATH /usr/lib/jvm/zulu-11 && \
-    echo "alias s4cmd='/usr/bin/s4cmd --endpoint-url=\"\$ENDPOINT_URL\" --access-key=\"\$ACCESS_KEY_ID\" --secret-key=\"\$SECRET_ACCESS_KEY\"'" >> /root/.bashrc
+    ln -s $JAVA_PATH /usr/lib/jvm/zulu-11
 
 COPY postgres/pg_hba.conf /pg_hba.conf
 COPY postgres/pginit.sql /pginit.sql
