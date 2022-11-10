@@ -1,6 +1,6 @@
 FROM node:lts-slim
-ENV DOWNLOAD_URL=https://cdn.azul.com/zulu/bin/zulu11.58.23-ca-jdk11.0.16.1-linux_amd64.deb
-ENV ZULU_DEB=zulu11.58.23-ca-jdk11.0.16.1-linux_amd64.deb
+ENV DOWNLOAD_URL=https://cdn.azul.com/zulu/bin/zulu11.60.19-ca-jdk11.0.17-linux_amd64.deb
+ENV ZULU_DEB=zulu11.60.19-ca-jdk11.0.17-linux_amd64.deb
 ENV MVN_PREFIX=apache-maven-3.8.6
 ENV MVN_TAR=$MVN_PREFIX-bin.tar.gz
 ENV DOWNLOAD_MVN=https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/$MVN_TAR
@@ -17,10 +17,7 @@ RUN apt-get update -qq && \
     apt-get install -qq git wget && \
     eval $(ssh-agent -s) && \
     wget $DOWNLOAD_URL && \
-    apt-get install -y java-common libasound2 libxi6 libxtst6 apt-utils p7zip-full libfontconfig1 libxrender1 gnupg2 lsb-release s4cmd && \
-    wget https://dl.min.io/client/mc/release/linux-amd64/mc && \
-    mv mc /usr/local/bin && \
-    chmod +x /usr/local/bin/mc && \
+    apt-get install -y java-common libasound2 libxi6 libxtst6 apt-utils p7zip-full libfontconfig1 libxrender1 gnupg2 lsb-release s4cmd openssh-clent && \
     dpkg -i $ZULU_DEB && \
     mkdir /opt/maven && \
     wget $DOWNLOAD_MVN && \
